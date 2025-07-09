@@ -1,0 +1,10 @@
+bash -c "
+source ~/miniconda3/bin/activate;
+conda deactivate;
+source /opt/tros/humble/setup.bash;
+source /home/sunrise/ros2_ws/install/setup.bash;
+TARGET_DEVICE_NAME='nd033';
+TARGET_DEVICE_ADDR='F3:05:CC:4B:6B:42';
+trap 'echo \"正在断开蓝牙设备 [$TARGET_DEVICE_NAME]...\"; bluetoothctl disconnect $TARGET_DEVICE_ADDR' EXIT;
+ros2 launch my_package launch_file1.py;
+"
